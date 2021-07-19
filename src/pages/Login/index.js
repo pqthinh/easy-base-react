@@ -1,6 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
+import { Wrapper } from "./styled";
 
 const Login = () => {
-  return <p> Login</p>;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submit = () => {
+    console.log(email, password);
+  };
+
+  return (
+    <Wrapper>
+      <FormControl>
+        <InputLabel htmlFor="email">Email address</InputLabel>
+        <Input
+          id="email"
+          name="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+      </FormControl>
+
+      <FormControl>
+        <InputLabel htmlFor="password">password</InputLabel>
+        <Input
+          id="password"
+          name="password"
+          value={password}
+          onChange={(e) => {
+            console.log(e);
+            setPassword(e.target.value);
+          }}
+        />
+      </FormControl>
+
+      <Button onClick={submit}>Submit</Button>
+    </Wrapper>
+  );
 };
 export default Login;
