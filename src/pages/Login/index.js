@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { Wrapper } from "./styled";
+import useRequest from "../../hooks/useRequest";
+import useToken from "../../hooks/useToken";
+import useStorage from "../../hooks/useStorage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { onPostExecute } = useRequest();
+  const { saveToken } = useToken();
+  const { saveValue } = useStorage();
 
-  const submit = () => {
-    console.log(email, password);
+  const submit = async () => {
+    const data = await onPostExecute("/login", { email, password });
+    console.log(data);
+    saveToken(data.token);
+    saveValue("USER", data.data);
   };
 
   return (

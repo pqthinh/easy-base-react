@@ -2,13 +2,13 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./style.css";
 
-const Sidebar = (props) => {
+const Sidebar = ({ ...others }) => {
   const history = useHistory();
   const gotoPage = (router) => {
     history.push(router);
   };
   return (
-    <div className={"sidebar"}>
+    <div className={"sidebar"} {...others}>
       <div
         onClick={() => {
           gotoPage("/sign-in");

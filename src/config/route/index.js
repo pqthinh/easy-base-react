@@ -9,10 +9,24 @@ const RegisterPage = lazy(() => import("../../pages/Register"));
 const ForgotPasswordPage = lazy(() => import("../../pages/ForgotPassword"));
 const DashboardPage = lazy(() => import("../../pages/Dashboard"));
 
-const Routes = ({ ...rest }) => {
-  return (
-    <Suspense fallback={<Loading />}>
-      <Switch>
+const Routes = ({ isLoggedIn, ...rest }) => {
+  const privateRoute = () => {
+    return (
+      <>
+        <Route
+          {...rest}
+          path={Routers.DASHBOARD}
+          render={(props) => {
+            return <DashboardPage {...rest} {...props} />;
+          }}
+        />
+      </>
+    );
+  };
+
+  const publicRoute = () => {
+    return (
+      <>
         <Route
           {...rest}
           exact
@@ -37,14 +51,13 @@ const Routes = ({ ...rest }) => {
             return <ForgotPasswordPage {...rest} {...props} />;
           }}
         />
-        <Route
-          {...rest}
-          path={Routers.DASHBOARD}
-          render={(props) => {
-            return <DashboardPage {...rest} {...props} />;
-          }}
-        />
-      </Switch>
+      </>
+    );
+  };
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <Switch>{isLoggedIn ? privateRoute() : publicRoute()}</Switch>
     </Suspense>
   );
 };
