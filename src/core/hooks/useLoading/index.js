@@ -1,11 +1,11 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'redux'
 import { showLoading, hideLoading } from '../../../redux/actions/appAction'
 import { withBoolean } from 'exp-value'
+import { store } from '../../../store/store'
+const { dispatch } = store
 
 const useLoading = () => {
-  const isLoading = useSelector(state => withBoolean('appState.loading', state))
-  const dispatch = useDispatch()
+  const isLoading = false
   const setLoading = React.useCallback(
     value => {
       if (value instanceof Boolean && value) {

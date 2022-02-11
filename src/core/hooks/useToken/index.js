@@ -1,11 +1,12 @@
 import React from 'react'
-import { useRecoilState } from 'recoil'
-import { tokenState } from 'stores/App'
 import useStorage from '../useStorage'
 
 const useToken = () => {
   const { getValue, saveValue } = useStorage()
-  const [{ isLoggedIn, token }, setToken] = useRecoilState(tokenState)
+  const [{ isLoggedIn, token }, setToken] = [
+    { isLoggedIn: false, token: 'thinh' },
+    () => {}
+  ]
   const clearToken = React.useCallback(() => onSaveToken(null), [token])
 
   const onSaveToken = React.useCallback(

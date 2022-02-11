@@ -1,7 +1,7 @@
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-} from '../actionTypes/userActionTypes'
+} from '../actionTypes/appActionTypes'
 
 const appState = (state = { loading: false, appInfo: {} }, action) => {
   switch (action.type) {

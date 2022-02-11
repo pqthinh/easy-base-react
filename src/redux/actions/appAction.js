@@ -1,7 +1,7 @@
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-} from '../actionTypes/userActionTypes'
+} from '../actionTypes/appActionTypes'
 export const showLoading = () => async dispatch => {
   dispatch({ type: SHOW_LOADING, payload: true })
 }
